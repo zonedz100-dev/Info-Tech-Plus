@@ -102,31 +102,41 @@ export const PurchasesView: React.FC = () => {
   };
 
   return (
-    <div className="p-5 max-w-7xl mx-auto space-y-4">
-      {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-4 rounded-xl">
-        <div>
-          <h1 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-teal-400" />
-            <span>المشتريات والموردون (Purchases & Suppliers)</span>
-          </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
-            استلام بضاعة جديدة، إدخال الأرقام التسلسلية، وإدارة حسابات الموردين
-          </p>
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-5">
+      {/* Top Banner with Luxury Gradient & Glowing Brand Accents */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527]/95 via-[#111F38]/90 to-[#0A1224]/95 border border-cyan-500/25 p-5 rounded-2xl shadow-xl shadow-black/30 erp-card-glow relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/25 to-blue-600/30 text-cyan-300 border border-cyan-500/40 flex items-center justify-center shadow-md shadow-cyan-500/20">
+              <ShoppingBag className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                <span>المشتريات والموردون</span>
+                <span className="text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">
+                  Purchases & Suppliers
+                </span>
+              </h1>
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                استلام بضاعة جديدة، إدخال الأرقام التسلسلية، وإدارة حسابات الموردين
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5 relative z-10">
           <button
             onClick={() => setShowAddSupplierModal(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 text-xs font-bold border border-slate-700/80 transition-all hover:border-slate-600 shadow-sm cursor-pointer"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 text-cyan-400" />
             <span>مورد جديد</span>
           </button>
 
           <button
             onClick={() => setShowNewOrderModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold shadow-md shadow-teal-500/20 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 text-xs font-black shadow-lg shadow-teal-500/25 transition-all cursor-pointer ring-1 ring-white/20"
           >
             <Truck className="w-4 h-4" />
             <span>استلام شحنة مشتريات (Stock In)</span>
@@ -135,26 +145,26 @@ export const PurchasesView: React.FC = () => {
       </div>
 
       {orderSuccessMessage && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs flex items-center gap-2 font-medium">
-          <CheckCircle className="w-4 h-4" />
+        <div className="p-3.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/15 border border-emerald-500/40 text-emerald-200 rounded-xl text-xs flex items-center gap-2.5 font-bold shadow-md shadow-emerald-950/20 animate-in fade-in">
+          <CheckCircle className="w-4 h-4 text-emerald-400" />
           <span>{orderSuccessMessage}</span>
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
+      <div className="flex items-center gap-2 border-b border-slate-800/90 pb-3">
         <button
           onClick={() => setActiveTab('orders')}
-          className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-            activeTab === 'orders' ? 'bg-teal-500 text-slate-950' : 'text-slate-400 hover:text-white'
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            activeTab === 'orders' ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md shadow-teal-500/25' : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
           }`}
         >
           أوامر الشراء والاستلام
         </button>
         <button
           onClick={() => setActiveTab('suppliers')}
-          className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-            activeTab === 'suppliers' ? 'bg-teal-500 text-slate-950' : 'text-slate-400 hover:text-white'
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            activeTab === 'suppliers' ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md shadow-teal-500/25' : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
           }`}
         >
           دليل الموردين ({suppliers.length})
@@ -163,45 +173,45 @@ export const PurchasesView: React.FC = () => {
 
       {/* Suppliers Table */}
       {activeTab === 'suppliers' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
+        <div className="bg-gradient-to-b from-[#0C1527] to-[#0A1224] border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl shadow-black/20 erp-card-glow">
           <table className="w-full text-xs text-start">
             <thead>
-              <tr className="bg-slate-950/80 border-b border-slate-800 text-slate-400">
-                <th className="py-3 px-3 text-start">اسم المورد والشركة</th>
-                <th className="py-3 px-3 text-start">بيانات الاتصال</th>
-                <th className="py-3 px-3 text-start">NIF / الحساب البنكي</th>
-                <th className="py-3 px-3 text-end">إجمالي المشتريات</th>
-                <th className="py-3 px-3 text-end">إجمالي المدفوع</th>
-                <th className="py-3 px-3 text-end">المستحقات المتبقية</th>
+              <tr className="bg-[#070D1A]/95 border-b border-slate-800/90 text-slate-300 font-bold">
+                <th className="py-3.5 px-4 text-start">اسم المورد والشركة</th>
+                <th className="py-3.5 px-4 text-start">بيانات الاتصال</th>
+                <th className="py-3.5 px-4 text-start">NIF / الحساب البنكي</th>
+                <th className="py-3.5 px-4 text-end">إجمالي المشتريات</th>
+                <th className="py-3.5 px-4 text-end">إجمالي المدفوع</th>
+                <th className="py-3.5 px-4 text-end">المستحقات المتبقية</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/60 font-medium">
               {suppliers.map(s => (
-                <tr key={s.id} className="hover:bg-slate-800/40">
-                  <td className="py-3 px-3">
-                    <div className="font-semibold text-white">{s.name}</div>
-                    <div className="text-[10px] text-slate-500 font-mono">{s.company}</div>
+                <tr key={s.id} className="hover:bg-cyan-500/[0.04] transition-colors">
+                  <td className="py-3.5 px-4 text-slate-200">
+                    <div className="font-bold text-white text-sm">{s.name}</div>
+                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">{s.company}</div>
                   </td>
-                  <td className="py-3 px-3 text-slate-300 font-mono">
-                    <div>{s.phone}</div>
-                    {s.email && <div className="text-[10px] text-slate-500">{s.email}</div>}
+                  <td className="py-3.5 px-4 text-slate-300">
+                    <div className="font-mono text-cyan-300 font-bold">{s.phone}</div>
+                    {s.email && <div className="text-[11px] text-slate-400 mt-0.5">{s.email}</div>}
                   </td>
-                  <td className="py-3 px-3 text-slate-400 text-[10px] font-mono">
+                  <td className="py-3.5 px-4 text-slate-400 text-[11px] font-mono">
                     {s.taxId ? `NIF: ${s.taxId}` : '-'}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono text-slate-300">
+                  <td className="py-3.5 px-4 text-end font-mono font-bold text-slate-200">
                     {formatCurrency(s.totalPurchased)}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono text-emerald-400">
+                  <td className="py-3.5 px-4 text-end font-mono font-bold text-emerald-400">
                     {formatCurrency(s.totalPaid)}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono font-bold">
+                  <td className="py-3.5 px-4 text-end font-mono font-black">
                     {s.outstandingDebt > 0 ? (
-                      <span className="text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                      <span className="text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2.5 py-1 rounded-full font-mono font-black shadow-sm">
                         {formatCurrency(s.outstandingDebt)}
                       </span>
                     ) : (
-                      <span className="text-slate-500 font-normal">0 دج</span>
+                      <span className="text-emerald-400 font-bold">خالص ✓</span>
                     )}
                   </td>
                 </tr>
@@ -213,15 +223,17 @@ export const PurchasesView: React.FC = () => {
 
       {/* Orders Tab */}
       {activeTab === 'orders' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 text-center space-y-3">
-          <Truck className="w-12 h-12 text-teal-400 mx-auto stroke-1" />
-          <h3 className="text-sm font-bold text-white">إدخال واستلام شحنة مشتريات جديدة مع السيريالات</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">
+        <div className="bg-gradient-to-b from-[#0C1527] to-[#0A1224] border border-slate-800/90 rounded-2xl p-8 text-center space-y-4 shadow-xl shadow-black/20 erp-card-glow max-w-2xl mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/10">
+            <Truck className="w-8 h-8 stroke-1.5" />
+          </div>
+          <h3 className="text-base font-black text-white">إدخال واستلام شحنة مشتريات جديدة مع السيريالات</h3>
+          <p className="text-xs text-slate-300 max-w-md mx-auto font-medium leading-relaxed">
             يمكنك تسجيل فواتير الشراء الواردة من الموردين، وتوليد أرقام تسلسلية فورية لكل جهاز كمبيوتر، وتحديث أسعار التكلفة آلياً
           </p>
           <button
             onClick={() => setShowNewOrderModal(true)}
-            className="px-5 py-2.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold inline-flex items-center gap-2 shadow-lg shadow-teal-500/20"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 text-xs font-black inline-flex items-center gap-2 shadow-xl shadow-teal-500/25 transition-all cursor-pointer ring-1 ring-white/20"
           >
             <Plus className="w-4 h-4" />
             <span>فتح استلام شحنة جديدة الآن</span>

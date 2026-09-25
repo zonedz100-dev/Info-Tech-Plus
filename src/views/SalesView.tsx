@@ -37,109 +37,117 @@ export const SalesView: React.FC = () => {
   });
 
   return (
-    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
-      {/* Top Header with High-Tech Styling */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527] via-[#0E1A34] to-[#0A1224] border border-cyan-500/30 p-4 lg:p-5 rounded-2xl shadow-xl shadow-black/30">
-        <div>
-          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
-              <Receipt className="w-4 h-4" />
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-5">
+      {/* Top Header with Luxury Gradient & Glowing Brand Accents */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527]/95 via-[#111F38]/90 to-[#0A1224]/95 border border-cyan-500/25 p-5 rounded-2xl shadow-xl shadow-black/30 erp-card-glow relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/25 to-teal-600/30 text-emerald-300 border border-emerald-500/40 flex items-center justify-center shadow-md shadow-emerald-500/20">
+              <Receipt className="w-5 h-5" />
             </div>
-            <span>سجل المبيعات والفواتير (Sales & Invoices)</span>
-          </h1>
-          <p className="text-xs text-slate-300 mt-1">
-            عرض وتدقيق فواتير البيع الصادرة، إعادة الطباعة الحرارية والرسمية، ومتابعة التحصيلات
-          </p>
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                <span>سجل المبيعات والفواتير</span>
+                <span className="text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+                  Sales & Invoices
+                </span>
+              </h1>
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                عرض وتدقيق فواتير البيع الصادرة، إعادة الطباعة الحرارية والرسمية، ومتابعة التحصيلات
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <Search className="w-4 h-4 text-cyan-400 absolute start-3 top-1/2 -translate-y-1/2" />
+        <div className="flex items-center gap-3 relative z-10">
+          <div className="relative w-full sm:w-80">
+            <Search className="w-4 h-4 text-cyan-400 absolute start-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="ابحث برقم الفاتورة، العميل، أو السيريال..."
-              className="bg-[#070D18] border border-slate-800 rounded-xl ps-9 pe-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-72"
+              className="w-full bg-[#070E1C]/90 border border-slate-700/80 rounded-xl ps-10 pe-3 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 shadow-inner font-medium"
             />
           </div>
         </div>
       </div>
 
       {/* Sales Data Table with Expressive Badges */}
-      <div className="bg-[#0B1322] border border-slate-800/90 rounded-2xl overflow-hidden shadow-lg">
+      <div className="bg-gradient-to-b from-[#0C1527] to-[#0A1224] border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl shadow-black/20 erp-card-glow">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-start">
             <thead>
-              <tr className="bg-[#070D18] border-b border-slate-800/80 text-slate-400 font-semibold">
-                <th className="py-3 px-3.5 text-start">رقم الفاتورة</th>
-                <th className="py-3 px-3.5 text-start">التاريخ والوقت</th>
-                <th className="py-3 px-3.5 text-start">العميل</th>
-                <th className="py-3 px-3.5 text-start">البنود والسيريالات</th>
-                <th className="py-3 px-3.5 text-end">المبلغ الإجمالي</th>
-                <th className="py-3 px-3.5 text-end">المدفوع</th>
-                <th className="py-3 px-3.5 text-end">المتبقي (آجل)</th>
-                <th className="py-3 px-3.5 text-center">طرق الدفع</th>
-                <th className="py-3 px-3.5 text-center">إجراءات</th>
+              <tr className="bg-[#070D1A]/95 border-b border-slate-800/90 text-slate-300 font-bold">
+                <th className="py-3.5 px-4 text-start">رقم الفاتورة</th>
+                <th className="py-3.5 px-4 text-start">التاريخ والوقت</th>
+                <th className="py-3.5 px-4 text-start">العميل</th>
+                <th className="py-3.5 px-4 text-start">البنود والسيريالات</th>
+                <th className="py-3.5 px-4 text-end">المبلغ الإجمالي</th>
+                <th className="py-3.5 px-4 text-end">المدفوع</th>
+                <th className="py-3.5 px-4 text-end">المتبقي (آجل)</th>
+                <th className="py-3.5 px-4 text-center">طرق الدفع</th>
+                <th className="py-3.5 px-4 text-center">إجراءات</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/60 font-medium">
               {filteredSales.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="py-12 text-center text-slate-500 text-xs">
+                  <td colSpan={9} className="py-16 text-center text-slate-400 text-xs font-medium">
                     لا توجد فواتير مطابقة لخيارات البحث
                   </td>
                 </tr>
               ) : (
                 filteredSales.map(sale => {
                   return (
-                    <tr key={sale.id} className="hover:bg-slate-800/40 transition-colors">
-                      <td className="py-3 px-3.5 font-mono font-bold text-cyan-400">
+                    <tr key={sale.id} className="hover:bg-cyan-500/[0.04] transition-colors">
+                      <td className="py-3.5 px-4 font-mono font-bold text-cyan-400">
                         {sale.invoiceNumber}
                       </td>
-                      <td className="py-3 px-3.5 font-mono text-slate-400 text-[11px]">
+                      <td className="py-3.5 px-4 font-mono text-slate-400 text-[11px]">
                         {sale.date}
                       </td>
-                      <td className="py-3 px-3.5 text-slate-200">
-                        <div className="font-bold">{sale.customerName}</div>
+                      <td className="py-3.5 px-4 text-slate-200">
+                        <div className="font-bold text-white">{sale.customerName}</div>
                         {sale.customerPhone && (
-                          <div className="text-[10px] text-slate-500 font-mono">{sale.customerPhone}</div>
+                          <div className="text-[10px] text-slate-400 font-mono mt-0.5">{sale.customerPhone}</div>
                         )}
                       </td>
-                      <td className="py-3 px-3.5 text-slate-300">
+                      <td className="py-3.5 px-4 text-slate-300">
                         <div className="max-w-xs truncate text-[11px] font-medium">
                           {sale.items.map(i => i.productName).join(' + ')}
                         </div>
                         {sale.items.some(i => i.serialNumbers && i.serialNumbers.length > 0) && (
-                          <div className="text-[10px] text-cyan-400 font-mono truncate flex items-center gap-1 mt-0.5">
-                            <Barcode className="w-3 h-3" />
+                          <div className="text-[10px] text-cyan-300 font-mono truncate flex items-center gap-1 mt-1">
+                            <Barcode className="w-3 h-3 text-cyan-400" />
                             <span>SN: {sale.items.flatMap(i => i.serialNumbers || []).join(', ')}</span>
                           </div>
                         )}
                       </td>
-                      <td className="py-3 px-3.5 text-end font-mono font-black text-white">
+                      <td className="py-3.5 px-4 text-end font-mono font-black text-white text-sm">
                         {formatCurrency(sale.grandTotal)}
                       </td>
-                      <td className="py-3 px-3.5 text-end font-mono font-bold text-emerald-400">
+                      <td className="py-3.5 px-4 text-end font-mono font-bold text-emerald-400">
                         {formatCurrency(sale.paidAmount)}
                       </td>
-                      <td className="py-3 px-3.5 text-end font-mono font-bold">
+                      <td className="py-3.5 px-4 text-end font-mono font-bold">
                         {sale.remainingDebt > 0 ? (
-                          <span className="text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded-full font-mono font-bold">
+                          <span className="text-purple-300 bg-purple-500/20 border border-purple-500/40 px-2.5 py-1 rounded-full font-mono font-black text-xs shadow-sm shadow-purple-500/20">
                             {formatCurrency(sale.remainingDebt)}
                           </span>
                         ) : (
-                          <span className="text-emerald-500/80 font-normal">خالص ✓</span>
+                          <span className="text-emerald-400/90 font-bold">خالص ✓</span>
                         )}
                       </td>
-                      <td className="py-3 px-3.5 text-center">
+                      <td className="py-3.5 px-4 text-center">
                         <div className="flex items-center justify-center gap-1.5 flex-wrap">
                           {sale.payments.map((p, idx) => {
                             const methodTheme = PAYMENT_METHOD_THEMES[p.method] || PAYMENT_METHOD_THEMES['cash'];
                             return (
                               <span
                                 key={idx}
-                                className={`text-[10px] font-mono px-2 py-0.5 rounded-md border font-semibold ${methodTheme.pillBg}`}
+                                className={`text-[10px] font-mono px-2 py-0.5 rounded-lg border font-bold shadow-sm ${methodTheme.pillBg}`}
                               >
                                 {methodTheme.nameAr.split(' ')[0]}
                               </span>
@@ -147,18 +155,18 @@ export const SalesView: React.FC = () => {
                           })}
                         </div>
                       </td>
-                      <td className="py-3 px-3.5 text-center">
-                        <div className="flex items-center justify-center gap-1.5">
+                      <td className="py-3.5 px-4 text-center">
+                        <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => setSelectedSaleDetail(sale)}
-                            className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                            className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 hover:text-white transition-all shadow-sm border border-slate-700/80 cursor-pointer"
                             title="عرض تفاصيل الفاتورة"
                           >
                             <Eye className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => setSelectedSaleForPrint(sale)}
-                            className="p-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-400 hover:text-cyan-300 border border-cyan-500/30 transition-colors"
+                            className="p-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 hover:text-cyan-200 border border-cyan-500/40 transition-all shadow-sm shadow-cyan-500/10 cursor-pointer"
                             title="طباعة (حراري أو A4)"
                           >
                             <Printer className="w-3.5 h-3.5" />

@@ -8,25 +8,67 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: #0B101B;
-    color: #F1F5F9;
+    background-color: #070B14;
+    color: #F8FAFC;
+    overflow-x: hidden;
   }
 }
 
-/* Custom scrollbars */
+/* Luxury ERP Background Mesh & Ambient Glows */
+.erp-bg-mesh {
+  background-color: #070B14;
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+/* Luxury Glass Cards with Subtle Gradients */
+.erp-card {
+  background: linear-gradient(135deg, rgba(17, 27, 49, 0.75) 0%, rgba(11, 19, 36, 0.85) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+}
+
+.erp-card-elevated {
+  background: linear-gradient(145deg, rgba(20, 32, 58, 0.8) 0%, rgba(11, 20, 38, 0.9) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(6, 182, 212, 0.07);
+}
+
+.erp-card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.erp-card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
+}
+
+/* Custom Luxury Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0E1420;
+  background: #080D18;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27354A;
-  border-radius: 3px;
+  background: #1E293B;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B4D68;
+  background: #0EA5E9;
 }
 
 /* Print styling for Thermal and A4 invoices */

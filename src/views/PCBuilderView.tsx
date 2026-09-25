@@ -155,22 +155,23 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
-      {/* Top Banner with High-Tech Styling */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527] via-[#0E1A34] to-[#0A1224] border border-cyan-500/30 p-4 lg:p-5 rounded-2xl shadow-xl shadow-black/30">
-        <div>
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-5">
+      {/* Top Banner with High-Tech Styling and Luxury Gradient */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527]/95 via-[#111F38]/90 to-[#0A1224]/95 border border-cyan-500/25 p-5 rounded-2xl shadow-xl shadow-black/30 erp-card-glow relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
           <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center">
-              <Cpu className="w-4 h-4" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/25 to-indigo-600/30 text-purple-300 border border-purple-500/40 flex items-center justify-center shadow-md shadow-purple-500/20">
+              <Cpu className="w-5 h-5" />
             </div>
             <span>مُجمّع الحواسيب وفحص التوافقية الذكي (PC Builder Studio)</span>
           </h1>
-          <p className="text-xs text-slate-300 mt-1">
+          <p className="text-xs text-slate-300 mt-1 font-medium">
             تكوين حواسيب الألعاب والمحطات الهندسية مع فحص المقبس (Socket)، نوع الرام، واستهلاك الطاقة آلياً
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 relative z-10">
           <button
             onClick={() => {
               setSelectedCpu(null);
@@ -181,7 +182,7 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
               setSelectedPsu(null);
               setSelectedCase(null);
             }}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 text-xs font-bold border border-slate-700/80 transition-all hover:border-slate-600 shadow-sm"
           >
             <RotateCcw className="w-3.5 h-3.5 text-cyan-400" />
             <span>إعادة التعيين</span>
@@ -190,16 +191,16 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
       </div>
 
       {notification && (
-        <div className="p-3 bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 rounded-xl text-xs flex items-center gap-2 font-medium animate-in fade-in">
+        <div className="p-3.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/15 border border-emerald-500/40 text-emerald-200 rounded-xl text-xs flex items-center gap-2.5 font-bold animate-in fade-in shadow-md shadow-emerald-950/30">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{notification}</span>
         </div>
       )}
 
       {/* Main Grid: Component Selector on Left, Compatibility & Price on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Parts Selection Grid with Distinct Expressive Colors */}
-        <div className="lg:col-span-2 space-y-3">
+        <div className="lg:col-span-2 space-y-3.5">
           {[
             { 
               title: '1. المعالج (CPU / Processor)', 
@@ -268,20 +269,20 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
             const Icon = part.icon;
 
             return (
-              <div key={idx} className={`p-3.5 bg-[#0B1322] border border-slate-800/90 rounded-2xl flex items-center justify-between gap-3 transition-colors ${part.borderHover}`}>
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${part.color}`}>
+              <div key={idx} className={`p-4 bg-gradient-to-r from-[#0C1527]/90 via-[#0E1A30]/80 to-[#0A1324]/90 border border-slate-800/90 rounded-2xl flex items-center justify-between gap-3.5 transition-all shadow-md shadow-black/20 backdrop-blur-md ${part.borderHover}`}>
+                <div className="flex items-center gap-3.5 flex-1 min-w-0">
+                  <div className={`w-11 h-11 rounded-xl border flex items-center justify-center shrink-0 ${part.color}`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-slate-300 mb-1">{part.title}</div>
+                    <div className="text-xs font-bold text-slate-200 mb-1.5">{part.title}</div>
                     <select
                       value={part.val?.id || ''}
                       onChange={e => {
                         const found = products.find(p => p.id === e.target.value);
                         part.setVal(found || null);
                       }}
-                      className="w-full bg-[#070D18] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white truncate focus:outline-none focus:border-cyan-500"
+                      className="w-full bg-[#070E1C]/90 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white truncate focus:outline-none focus:border-cyan-500 shadow-inner font-medium"
                     >
                       <option value="">-- اضغط لاختيار القطعة المتوافقة --</option>
                       {part.options.map(opt => (
@@ -295,10 +296,10 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
 
                 {part.val && (
                   <div className="text-end shrink-0 ps-3">
-                    <div className="font-mono text-xs font-black text-emerald-400">
+                    <div className="font-mono text-sm font-black text-emerald-400">
                       {formatCurrency(part.val.sellingPrice)}
                     </div>
-                    <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                    <div className="text-[11px] text-slate-400 font-mono mt-0.5">
                       تكلفة: {formatCurrency(part.val.costPrice)}
                     </div>
                   </div>
@@ -308,14 +309,14 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
           })}
 
           {/* Assembly Service Toggle */}
-          <div className="p-3.5 bg-[#0B1322] border border-slate-800/90 rounded-2xl flex items-center justify-between">
+          <div className="p-4 bg-gradient-to-r from-[#0C1527]/90 via-[#0E1A30]/80 to-[#0A1324]/90 border border-slate-800/90 rounded-2xl flex items-center justify-between shadow-md shadow-black/20">
             <div className="flex items-center gap-3">
               <input
                 type="checkbox"
                 id="assembly-toggle"
                 checked={includeAssembly}
                 onChange={e => setIncludeAssembly(e.target.checked)}
-                className="w-4 h-4 rounded bg-[#070D18] border-slate-800 text-cyan-500 focus:ring-0 cursor-pointer"
+                className="w-4 h-4 rounded bg-[#070D18] border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer accent-cyan-500"
               />
               <label htmlFor="assembly-toggle" className="text-xs text-slate-200 cursor-pointer font-bold">
                 إضافة خدمة التجميع الاحترافي، تركيب المعجون الحراري، واختبار الإجهاد (+4,000 دج)
@@ -332,21 +333,21 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
         {/* Compatibility Check & Financial Summary Sidebar */}
         <div className="space-y-4">
           {/* Compatibility Card */}
-          <div className="bg-[#0B1322] border border-slate-800/90 p-4 lg:p-5 rounded-2xl space-y-3.5">
+          <div className="bg-gradient-to-b from-[#0D182E] to-[#0A1224] border border-slate-800/90 p-5 rounded-2xl space-y-4 shadow-lg shadow-black/30 erp-card-glow">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
               <h3 className="text-xs font-bold text-white flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-cyan-400" />
                 <span>محرك فحص التوافقية الهندسية</span>
               </h3>
-              <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${
-                isCompatible ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+              <span className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full font-bold ${
+                isCompatible ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
               }`}>
                 {isCompatible ? 'متوافقة 100%' : 'يوجد تعارض'}
               </span>
             </div>
 
             {isCompatible ? (
-              <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 flex items-start gap-2.5">
+              <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 flex items-start gap-2.5 font-medium">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
                   جميع القطع متوافقة تماماً هندسياً: المقبس مطابق، نوع الذاكرة صحيح، واستطاعة التغذية كافية.
@@ -364,31 +365,32 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
             )}
 
             {/* Estimated Power Draw Meter */}
-            <div className="p-3.5 rounded-xl bg-[#070D18] border border-slate-800 flex items-center justify-between text-xs">
-              <span className="text-slate-400 flex items-center gap-1.5 font-medium">
+            <div className="p-3.5 rounded-xl bg-[#070E1C]/90 border border-slate-800 flex items-center justify-between text-xs">
+              <span className="text-slate-300 flex items-center gap-2 font-medium">
                 <Zap className="w-4 h-4 text-amber-400" />
                 <span>الاستهلاك التقديري للطاقة:</span>
               </span>
-              <span className="font-mono font-bold text-amber-400">{estimatedWattage} واط (W)</span>
+              <span className="font-mono font-black text-amber-300">{estimatedWattage} واط (W)</span>
             </div>
           </div>
 
           {/* Pricing & Profit Matrix */}
-          <div className="bg-[#0B1322] border border-slate-800/90 p-4 lg:p-5 rounded-2xl space-y-3.5">
-            <h3 className="text-xs font-bold text-white border-b border-slate-800/80 pb-3">
-              الملخص المالي وهوامش الربح
+          <div className="bg-gradient-to-b from-[#0D182E] to-[#0A1224] border border-slate-800/90 p-5 rounded-2xl space-y-4 shadow-lg shadow-black/30 erp-card-glow">
+            <h3 className="text-xs font-bold text-white border-b border-slate-800/80 pb-3 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400" />
+              <span>الملخص المالي وهوامش الربح</span>
             </h3>
 
-            <div className="space-y-2 text-xs font-mono">
+            <div className="space-y-2.5 text-xs font-mono">
               <div className="flex justify-between text-slate-400">
                 <span>تكلفة المكونات الإجمالية:</span>
-                <span>{formatCurrency(totalCost)}</span>
+                <span className="text-slate-200 font-bold">{formatCurrency(totalCost)}</span>
               </div>
               <div className="flex justify-between text-emerald-400 font-bold">
                 <span>صافي هامش الربح المحقق:</span>
                 <span>+{formatCurrency(totalProfit)}</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-white pt-2.5 border-t border-slate-800">
+              <div className="flex justify-between text-sm font-bold text-white pt-3 border-t border-slate-800/90">
                 <span>سعر البيع للزبون:</span>
                 <span className="text-emerald-400 text-lg font-black">{formatCurrency(totalSellingPrice)}</span>
               </div>
@@ -399,7 +401,7 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
               <button
                 onClick={handleConvertToQuotation}
                 disabled={selectedItems.length === 0}
-                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-cyan-300 text-xs font-bold flex items-center justify-center gap-2 border border-slate-700 transition-colors"
+                className="w-full py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 disabled:opacity-40 text-cyan-300 text-xs font-bold flex items-center justify-center gap-2 border border-slate-700/80 transition-colors shadow-sm cursor-pointer"
               >
                 <FileSpreadsheet className="w-4 h-4" />
                 <span>تحويل إلى عرض سعر رسمي (Quotation)</span>
@@ -408,9 +410,9 @@ export const PCBuilderView: React.FC<PCBuilderViewProps> = ({ onNavigate }) => {
               <button
                 onClick={handleSendToPOS}
                 disabled={selectedItems.length === 0}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 disabled:opacity-40 text-slate-950 text-xs font-black flex items-center justify-center gap-2 shadow-lg shadow-teal-500/20 transition-all ring-1 ring-white/20"
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-400 hover:from-teal-400 hover:to-emerald-300 disabled:opacity-40 text-slate-950 text-xs font-black flex items-center justify-center gap-2 shadow-xl shadow-teal-500/25 transition-all ring-1 ring-white/30 cursor-pointer"
               >
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-4 h-4 text-slate-950" />
                 <span>ترحيل التجميعة إلى كاشير POS للبيع</span>
               </button>
             </div>

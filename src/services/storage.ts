@@ -56,7 +56,9 @@ export const defaultSettings: StoreSettings = {
   defaultWarrantyMonths: 12,
   receiptHeader: 'مرحباً بكم في متجر تيك بالس - خياركم الموثوق في الحواسيب والإلكترونيات',
   receiptFooter: 'شكراً لتعاملكم معنا. الضمان يسري بموجب الفاتورة والرقم التسلسلي للجهاز.',
-  barcodePrefix: 'TP'
+  barcodePrefix: 'TP',
+  logoUrl: '',
+  logoBadgeStyle: 'glow'
 };
 
 // Seed Products

@@ -72,8 +72,23 @@ export const InvoicePrintModal: React.FC<InvoicePrintModalProps> = ({ sale, onCl
           {printFormat === 'thermal80' ? (
             /* 80mm Thermal Receipt Layout */
             <div className="print-area w-80 bg-white text-slate-950 p-4 font-mono text-[11px] leading-tight rounded shadow border border-slate-300">
-              {/* Header */}
-              <div className="text-center pb-2 border-b border-dashed border-slate-400 space-y-1">
+              {/* Header with Prominent Store Logo */}
+              <div className="text-center pb-2.5 border-b border-dashed border-slate-400 space-y-1">
+                {settings.logoUrl ? (
+                  <div className="flex justify-center mb-1.5">
+                    <img 
+                      src={settings.logoUrl} 
+                      alt={settings.storeNameAr} 
+                      className="max-h-16 max-w-[170px] object-contain filter grayscale contrast-150"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex justify-center mb-1">
+                    <div className="text-xs font-black tracking-widest text-black border-2 border-black px-3 py-0.5 rounded uppercase">
+                      INFOTECH
+                    </div>
+                  </div>
+                )}
                 <div className="font-bold text-sm text-black">{settings.storeNameAr}</div>
                 <div className="text-[10px] text-slate-600">{settings.storeName}</div>
                 <div className="text-[10px]">{settings.address}</div>
@@ -180,17 +195,32 @@ export const InvoicePrintModal: React.FC<InvoicePrintModalProps> = ({ sale, onCl
           ) : (
             /* Official A4 Format */
             <div className="print-area w-full max-w-2xl bg-white text-slate-950 p-8 rounded shadow-lg text-xs leading-normal">
-              {/* Official Header */}
+              {/* Official Header with Prominent Store Logo */}
               <div className="flex justify-between items-start border-b-2 border-slate-800 pb-4">
-                <div>
-                  <h1 className="text-xl font-bold text-slate-900">{settings.storeNameAr}</h1>
-                  <h2 className="text-xs text-slate-600 font-mono">{settings.storeName}</h2>
-                  <div className="text-[11px] text-slate-600 mt-1">
-                    <div>{settings.address}</div>
-                    <div>الهاتف: {settings.phone} · البريد: {settings.email}</div>
-                  </div>
-                  <div className="text-[10px] text-slate-500 font-mono mt-1">
-                    NIF: {settings.taxId} | RC: {settings.commercialReg}
+                <div className="flex items-center gap-4">
+                  {settings.logoUrl ? (
+                    <div className="w-20 h-20 rounded-2xl border border-slate-300 p-2 flex items-center justify-center bg-white shadow-sm shrink-0">
+                      <img
+                        src={settings.logoUrl}
+                        alt={settings.storeNameAr}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-2xl bg-slate-900 text-cyan-400 border border-slate-800 flex items-center justify-center font-black text-xl tracking-wider shadow-sm shrink-0">
+                      IT
+                    </div>
+                  )}
+                  <div>
+                    <h1 className="text-xl font-black text-slate-900">{settings.storeNameAr}</h1>
+                    <h2 className="text-xs text-slate-600 font-mono font-bold">{settings.storeName}</h2>
+                    <div className="text-[11px] text-slate-600 mt-1">
+                      <div>{settings.address}</div>
+                      <div>الهاتف: {settings.phone} · البريد: {settings.email}</div>
+                    </div>
+                    <div className="text-[10px] text-slate-500 font-mono mt-1 font-semibold">
+                      NIF: {settings.taxId} | RC: {settings.commercialReg}
+                    </div>
                   </div>
                 </div>
 

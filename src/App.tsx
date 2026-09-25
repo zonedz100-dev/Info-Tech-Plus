@@ -70,7 +70,7 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B101B] text-slate-100 flex flex-col">
+    <div className="min-h-screen erp-bg-mesh text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
       {/* Top Header */}
       <Header
         onOpenCommand={() => setIsCommandOpen(true)}
@@ -83,7 +83,7 @@ const MainLayout: React.FC = () => {
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
         {/* Content Viewport */}
-        <main className="flex-1 overflow-y-auto bg-[#0B101B]">
+        <main className="flex-1 overflow-y-auto erp-bg-mesh relative">
           {renderActiveView()}
         </main>
       </div>

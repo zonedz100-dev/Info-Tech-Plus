@@ -19,6 +19,7 @@ import {
   Settings,
   Sparkles
 } from 'lucide-react';
+import { InfoTechLogo } from '../common/InfoTechLogo';
 
 interface NavItem {
   id: string;
@@ -42,7 +43,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
-  const { t, currentUser, repairs, products, sales, cashRegister } = useApp();
+  const { t, currentUser, repairs, products, sales, cashRegister, settings } = useApp();
 
   const lowStockCount = products.filter(p => p.currentStock <= p.minStock && p.active).length;
   const activeRepairsCount = repairs.filter(r => r.status === 'received' || r.status === 'repairing').length;
@@ -72,15 +73,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           label: t.dashboard, 
           icon: LayoutDashboard,
           colorClass: 'text-cyan-400',
-          activeBg: 'bg-cyan-500/15 text-cyan-300 border-s-2 border-cyan-400'
+          activeBg: 'bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-transparent text-cyan-200 border-s-[3px] border-cyan-400 font-bold shadow-sm shadow-cyan-500/10'
         },
         { 
           id: 'pos', 
           label: t.pos, 
           icon: ShoppingCart, 
           highlight: true,
-          colorClass: 'text-white',
-          activeBg: 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 font-bold shadow-lg shadow-teal-500/25 ring-1 ring-teal-400'
+          colorClass: 'text-slate-950',
+          activeBg: 'bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 text-slate-950 font-black shadow-lg shadow-teal-500/30 ring-1 ring-white/30'
         },
         { 
           id: 'sales', 
@@ -88,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           icon: Receipt, 
           badge: sales.length,
           colorClass: 'text-emerald-400',
-          activeBg: 'bg-emerald-500/15 text-emerald-300 border-s-2 border-emerald-400'
+          activeBg: 'bg-gradient-to-r from-emerald-500/20 via-teal-500/10 to-transparent text-emerald-200 border-s-[3px] border-emerald-400 font-bold shadow-sm'
         },
       ]
     },
@@ -101,7 +102,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           icon: Package, 
           badge: products.length,
           colorClass: 'text-blue-400',
-          activeBg: 'bg-blue-500/15 text-blue-300 border-s-2 border-blue-400'
+          activeBg: 'bg-gradient-to-r from-blue-500/20 via-indigo-500/10 to-transparent text-blue-200 border-s-[3px] border-blue-400 font-bold shadow-sm'
         },
         { 
           id: 'inventory', 
@@ -109,21 +110,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           icon: Layers, 
           alert: lowStockCount > 0 ? lowStockCount : undefined,
           colorClass: 'text-amber-400',
-          activeBg: 'bg-amber-500/15 text-amber-300 border-s-2 border-amber-400'
+          activeBg: 'bg-gradient-to-r from-amber-500/20 via-orange-500/10 to-transparent text-amber-200 border-s-[3px] border-amber-400 font-bold shadow-sm'
         },
         { 
           id: 'serials', 
           label: t.serials, 
           icon: Barcode,
           colorClass: 'text-purple-400',
-          activeBg: 'bg-purple-500/15 text-purple-300 border-s-2 border-purple-400'
+          activeBg: 'bg-gradient-to-r from-purple-500/20 via-violet-500/10 to-transparent text-purple-200 border-s-[3px] border-purple-400 font-bold shadow-sm'
         },
         { 
           id: 'purchases', 
           label: t.purchases, 
           icon: ShoppingBag,
           colorClass: 'text-sky-400',
-          activeBg: 'bg-sky-500/15 text-sky-300 border-s-2 border-sky-400'
+          activeBg: 'bg-gradient-to-r from-sky-500/20 via-blue-500/10 to-transparent text-sky-200 border-s-[3px] border-sky-400 font-bold shadow-sm'
         },
       ]
     },
@@ -135,14 +136,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           label: t.customers, 
           icon: Users,
           colorClass: 'text-amber-400',
-          activeBg: 'bg-amber-500/15 text-amber-300 border-s-2 border-amber-400'
+          activeBg: 'bg-gradient-to-r from-amber-500/20 via-yellow-500/10 to-transparent text-amber-200 border-s-[3px] border-amber-400 font-bold shadow-sm'
         },
         { 
           id: 'warranty', 
           label: t.warranty, 
           icon: ShieldAlert,
           colorClass: 'text-teal-400',
-          activeBg: 'bg-teal-500/15 text-teal-300 border-s-2 border-teal-400'
+          activeBg: 'bg-gradient-to-r from-teal-500/20 via-emerald-500/10 to-transparent text-teal-200 border-s-[3px] border-teal-400 font-bold shadow-sm'
         },
         { 
           id: 'repairs', 
@@ -150,21 +151,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           icon: Wrench, 
           badge: activeRepairsCount > 0 ? activeRepairsCount : undefined,
           colorClass: 'text-orange-400',
-          activeBg: 'bg-orange-500/15 text-orange-300 border-s-2 border-orange-400'
+          activeBg: 'bg-gradient-to-r from-orange-500/20 via-amber-500/10 to-transparent text-orange-200 border-s-[3px] border-orange-400 font-bold shadow-sm'
         },
         { 
           id: 'pcBuilder', 
           label: t.pcBuilder, 
           icon: Cpu,
           colorClass: 'text-fuchsia-400',
-          activeBg: 'bg-fuchsia-500/15 text-fuchsia-300 border-s-2 border-fuchsia-400'
+          activeBg: 'bg-gradient-to-r from-fuchsia-500/20 via-purple-500/10 to-transparent text-fuchsia-200 border-s-[3px] border-fuchsia-400 font-bold shadow-sm'
         },
         { 
           id: 'quotations', 
           label: t.quotations, 
           icon: FileSpreadsheet,
           colorClass: 'text-indigo-400',
-          activeBg: 'bg-indigo-500/15 text-indigo-300 border-s-2 border-indigo-400'
+          activeBg: 'bg-gradient-to-r from-indigo-500/20 via-blue-500/10 to-transparent text-indigo-200 border-s-[3px] border-indigo-400 font-bold shadow-sm'
         },
       ]
     },
@@ -176,35 +177,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           label: t.cashRegister, 
           icon: Coins,
           colorClass: 'text-emerald-400',
-          activeBg: 'bg-emerald-500/15 text-emerald-300 border-s-2 border-emerald-400'
+          activeBg: 'bg-gradient-to-r from-emerald-500/20 via-teal-500/10 to-transparent text-emerald-200 border-s-[3px] border-emerald-400 font-bold shadow-sm'
         },
         { 
           id: 'expenses', 
           label: t.expenses, 
           icon: TrendingDown,
           colorClass: 'text-rose-400',
-          activeBg: 'bg-rose-500/15 text-rose-300 border-s-2 border-rose-400'
+          activeBg: 'bg-gradient-to-r from-rose-500/20 via-red-500/10 to-transparent text-rose-200 border-s-[3px] border-rose-400 font-bold shadow-sm'
         },
         { 
           id: 'reports', 
           label: t.reports, 
           icon: BarChart3,
           colorClass: 'text-indigo-400',
-          activeBg: 'bg-indigo-500/15 text-indigo-300 border-s-2 border-indigo-400'
+          activeBg: 'bg-gradient-to-r from-indigo-500/20 via-blue-500/10 to-transparent text-indigo-200 border-s-[3px] border-indigo-400 font-bold shadow-sm'
         },
         { 
           id: 'settings', 
           label: t.settings, 
           icon: Settings,
           colorClass: 'text-slate-400',
-          activeBg: 'bg-slate-800 text-white border-s-2 border-slate-400'
+          activeBg: 'bg-gradient-to-r from-slate-700/40 to-transparent text-white border-s-[3px] border-slate-300 font-bold shadow-sm'
         },
       ]
     }
   ];
 
   return (
-    <aside className="w-60 bg-[#090E18] border-e border-slate-800/80 flex flex-col justify-between shrink-0 select-none overflow-y-auto">
+    <aside className="w-60 bg-gradient-to-b from-[#080D1A] via-[#091122] to-[#070B16] border-e border-slate-800/80 flex flex-col justify-between shrink-0 select-none overflow-y-auto erp-card-glow">
       <div className="p-2.5 space-y-4">
         {navGroups.map((group, gIdx) => {
           const visibleItems = group.items.filter(item => isRoleAllowed(item.id));
@@ -212,7 +213,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
 
           return (
             <div key={gIdx} className="space-y-1">
-              <div className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+              <div className="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 {group.title}
               </div>
               <div className="space-y-0.5">
@@ -224,36 +225,36 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
                     <button
                       key={item.id}
                       onClick={() => setActiveTab(item.id)}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-150 group ${
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-150 group ${
                         isActive
                           ? item.activeBg
                           : item.highlight
-                          ? 'text-teal-300 hover:bg-teal-500/10 bg-teal-500/5 border border-teal-500/20'
-                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                          ? 'text-teal-300 hover:bg-teal-500/10 bg-teal-500/5 border border-teal-500/30'
+                          : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <Icon 
-                          className={`w-4 h-4 transition-colors ${
+                          className={`w-4 h-4 transition-transform group-hover:scale-110 ${
                             isActive && item.highlight 
                               ? 'text-slate-950' 
                               : isActive 
                               ? item.colorClass 
-                              : `${item.colorClass} opacity-70 group-hover:opacity-100`
+                              : `${item.colorClass} opacity-85 group-hover:opacity-100`
                           }`} 
                         />
                         <span className="truncate">{item.label}</span>
                       </div>
 
                       {item.alert ? (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-mono animate-pulse">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-mono animate-pulse font-bold">
                           {item.alert}
                         </span>
                       ) : item.badge !== undefined && item.badge > 0 ? (
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-mono ${
                           isActive && item.highlight 
-                            ? 'bg-slate-900 text-teal-300' 
-                            : 'text-slate-400 bg-slate-900/90 border border-slate-800'
+                            ? 'bg-slate-900 text-teal-300 font-bold' 
+                            : 'text-slate-300 bg-slate-900/90 border border-slate-700/60 font-semibold'
                         }`}>
                           {item.badge}
                         </span>
@@ -267,18 +268,30 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         })}
       </div>
 
-      {/* Footer Info */}
-      <div className="p-3 border-t border-slate-800/80 bg-slate-950/40 text-[11px] text-slate-400 space-y-1">
-        <div className="flex items-center justify-between">
+      {/* Footer Info with Store Logo */}
+      <div 
+        onClick={() => setActiveTab('settings')}
+        className="p-3 border-t border-slate-800/80 bg-gradient-to-r from-slate-950/80 to-[#0A1224]/80 text-[11px] text-slate-300 space-y-2 backdrop-blur-md cursor-pointer group hover:bg-slate-900/60 transition-colors"
+        title="انقر لتعديل هوية وشعار المتجر"
+      >
+        <div className="flex items-center gap-2.5">
+          <InfoTechLogo size="sm" showText={false} interactive />
+          <div className="min-w-0 flex-1">
+            <div className="font-bold text-white text-xs truncate group-hover:text-cyan-300 transition-colors">
+              {settings.storeNameAr || 'متجر أنفوتيك'}
+            </div>
+            <div className="text-[10px] text-slate-400 font-mono truncate">
+              {settings.storeName || 'InfoTech Systems'}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-1 border-t border-slate-800/60 text-[10px]">
           <span className="text-slate-400">حالة النظام:</span>
           <span className="text-emerald-400 font-mono flex items-center gap-1.5 font-bold">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ring-2 ring-emerald-500/20" />
-            متصل (InfoTech ACID)
+            متصل (ACID)
           </span>
-        </div>
-        <div className="text-[10px] text-slate-400 font-mono flex items-center justify-between">
-          <span>InfoTech Store Suite</span>
-          <span className="text-cyan-400">v2.5 · Algiers</span>
         </div>
       </div>
     </aside>

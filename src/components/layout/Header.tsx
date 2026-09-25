@@ -44,25 +44,30 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
   ];
 
   return (
-    <header className="h-14 border-b border-slate-800/80 bg-gradient-to-r from-[#070B14] via-[#0D1527] to-[#0A101D] px-4 flex items-center justify-between sticky top-0 z-30 select-none shadow-md shadow-black/20">
+    <header className="h-14 border-b border-slate-800/80 bg-gradient-to-r from-[#070D19]/95 via-[#0B152A]/90 to-[#080E1D]/95 backdrop-blur-xl px-4 flex items-center justify-between sticky top-0 z-30 select-none shadow-lg shadow-black/30 erp-card-glow">
       {/* Zone 1: Brand Wordmark & Location */}
       <div className="flex items-center gap-3">
-        <InfoTechLogo size="md" showText={true} />
+        <InfoTechLogo 
+          size="md" 
+          showText={true} 
+          interactive={true}
+          onClick={() => onNavigateTab('settings')}
+        />
 
-        <div className="h-6 w-[1px] bg-slate-800 mx-1 hidden sm:block" />
+        <div className="h-6 w-[1px] bg-slate-800/80 mx-1 hidden sm:block" />
 
         {/* Location / Branch Selector */}
         <div className="relative">
           <button
             onClick={() => setShowLocationMenu(!showLocationMenu)}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-700/60 text-xs text-slate-300 hover:text-white hover:border-cyan-500/40 transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-700/60 hover:border-cyan-500/50 text-xs text-slate-200 hover:text-white transition-all shadow-sm hover:shadow-cyan-500/10"
           >
             <Store className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="font-medium">{lang === 'ar' ? activeLocation.nameAr : activeLocation.name}</span>
+            <span className="font-semibold">{lang === 'ar' ? activeLocation.nameAr : activeLocation.name}</span>
           </button>
 
           {showLocationMenu && (
-            <div className="absolute top-full mt-1.5 start-0 w-64 bg-slate-900/95 backdrop-blur-md border border-slate-800 rounded-xl shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95">
+            <div className="absolute top-full mt-1.5 start-0 w-64 bg-[#0B1528]/95 backdrop-blur-xl border border-slate-700/80 rounded-xl shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95">
               <div className="px-3 py-1.5 text-[11px] font-semibold text-slate-400 border-b border-slate-800 mb-1 flex items-center justify-between">
                 <span>{lang === 'ar' ? 'اختر نقطة البيع أو المستودع' : 'Select Branch / Store'}</span>
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
@@ -93,13 +98,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
           onClick={() => onNavigateTab('cashRegister')}
           className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all shadow-sm ${
             cashRegister?.status === 'open'
-              ? 'bg-gradient-to-r from-emerald-500/15 to-teal-500/15 text-emerald-300 border border-emerald-500/30 hover:border-emerald-400'
-              : 'bg-gradient-to-r from-amber-500/15 to-orange-500/15 text-amber-300 border border-amber-500/30 hover:border-amber-400'
+              ? 'bg-gradient-to-r from-emerald-500/20 via-teal-500/15 to-emerald-500/10 text-emerald-300 border border-emerald-500/40 hover:border-emerald-400 hover:shadow-emerald-500/10'
+              : 'bg-gradient-to-r from-amber-500/20 via-orange-500/15 to-amber-500/10 text-amber-300 border border-amber-500/40 hover:border-amber-400 hover:shadow-amber-500/10'
           }`}
           title={cashRegister?.status === 'open' ? 'الصندوق مفتوح' : 'الصندوق مغلق'}
         >
-          <span className={`w-2 h-2 rounded-full ${cashRegister?.status === 'open' ? 'bg-emerald-400 animate-pulse ring-2 ring-emerald-500/20' : 'bg-amber-400'}`} />
-          <span className="font-semibold">{cashRegister?.status === 'open' ? t.openRegister : t.closedRegister}</span>
+          <span className={`w-2 h-2 rounded-full ${cashRegister?.status === 'open' ? 'bg-emerald-400 animate-pulse ring-2 ring-emerald-500/30' : 'bg-amber-400'}`} />
+          <span className="font-bold">{cashRegister?.status === 'open' ? t.openRegister : t.closedRegister}</span>
         </button>
       </div>
 
@@ -107,13 +112,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
       <div className="flex items-center gap-2">
         <button
           onClick={onOpenCommand}
-          className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 text-xs text-slate-400 hover:text-slate-200 transition-all w-56 md:w-72 justify-between group shadow-inner"
+          className="flex items-center gap-3 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#0A1324]/80 to-[#0F1C34]/80 border border-slate-700/60 hover:border-cyan-400/60 text-xs text-slate-300 hover:text-white transition-all w-56 md:w-72 justify-between group shadow-inner shadow-black/40"
         >
           <div className="flex items-center gap-2">
             <Search className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
             <span className="truncate">{t.searchPlaceholder.substring(0, 26)}...</span>
           </div>
-          <kbd className="text-[10px] bg-slate-800 border border-slate-700/80 rounded px-1.5 py-0.5 text-cyan-300 font-mono shadow-sm">
+          <kbd className="text-[10px] bg-slate-800/90 border border-slate-700/80 rounded px-1.5 py-0.5 text-cyan-300 font-mono shadow-sm">
             Ctrl K
           </kbd>
         </button>
@@ -122,11 +127,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
       {/* Zone 3: Language, Notifications, Role Profile */}
       <div className="flex items-center gap-2">
         {/* Language Switcher */}
-        <div className="flex items-center bg-slate-900/90 rounded-lg p-0.5 border border-slate-800">
+        <div className="flex items-center bg-[#091122]/90 rounded-lg p-0.5 border border-slate-800">
           <button
             onClick={() => setLang('ar')}
             className={`px-2 py-1 text-xs rounded transition-colors ${
-              lang === 'ar' ? 'bg-cyan-500/20 text-cyan-300 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'
+              lang === 'ar' ? 'bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-300 font-bold shadow-sm border border-cyan-500/30' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             عربي
@@ -134,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
           <button
             onClick={() => setLang('fr')}
             className={`px-2 py-1 text-xs rounded transition-colors ${
-              lang === 'fr' ? 'bg-cyan-500/20 text-cyan-300 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'
+              lang === 'fr' ? 'bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-300 font-bold shadow-sm border border-cyan-500/30' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             FR
@@ -142,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCommand, onNavigateTab }) 
           <button
             onClick={() => setLang('en')}
             className={`px-2 py-1 text-xs rounded transition-colors ${
-              lang === 'en' ? 'bg-cyan-500/20 text-cyan-300 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'
+              lang === 'en' ? 'bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-300 font-bold shadow-sm border border-cyan-500/30' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             EN

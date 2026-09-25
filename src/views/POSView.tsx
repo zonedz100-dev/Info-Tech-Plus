@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { InvoicePrintModal } from '../components/common/InvoicePrintModal';
 import { getCategoryTheme, PAYMENT_METHOD_THEMES } from '../utils/theme';
+import { InfoTechLogo } from '../components/common/InfoTechLogo';
 
 interface POSViewProps {
   onNavigate: (tab: string) => void;
@@ -387,10 +388,10 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="h-[calc(100vh-3.5rem)] flex flex-col lg:flex-row overflow-hidden select-none bg-[#090E18]">
+    <div className="h-[calc(100vh-3.5rem)] flex flex-col lg:flex-row overflow-hidden select-none erp-bg-mesh">
       {/* Error Floating Alert */}
       {errorMessage && (
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-rose-600 to-red-600 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-rose-400/40 animate-in fade-in slide-in-from-top-2">
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-rose-400/50 animate-in fade-in slide-in-from-top-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMessage}</span>
           <button onClick={() => setErrorMessage(null)} className="ms-3 hover:opacity-80">
@@ -402,7 +403,16 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
       {/* Main Left: Product Grid, Category Strip & Barcode Search */}
       <div className="flex-1 flex flex-col border-e border-slate-800/80 overflow-hidden">
         {/* Top Search Bar & Category Scroller */}
-        <div className="p-3 bg-[#0B1322] border-b border-slate-800/80 flex flex-col sm:flex-row items-center gap-2.5 shrink-0">
+        <div className="p-3 bg-gradient-to-r from-[#0A1324]/90 via-[#0D1932]/85 to-[#091122]/90 border-b border-slate-800/80 flex flex-col sm:flex-row items-center gap-2.5 shrink-0 backdrop-blur-md">
+          {/* Prominent Store Brand Logo Badge */}
+          <div 
+            onClick={() => onNavigate('settings')} 
+            className="shrink-0 cursor-pointer hidden md:flex items-center gap-2 p-0.5 rounded-xl hover:bg-slate-800/60 transition-all group" 
+            title="شعار المتجر (اضغط لتعديل الإعدادات واللوغو)"
+          >
+            <InfoTechLogo size="sm" showText={false} interactive />
+          </div>
+
           {/* Barcode / Search Input */}
           <div className="relative flex-1 w-full">
             <Search className="w-4 h-4 text-cyan-400 absolute start-3 top-1/2 -translate-y-1/2" />
@@ -413,18 +423,18 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
               onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}
               placeholder="امسح الباركود، أو ابحث بالاسم، SKU، أو السيريال..."
-              className="w-full bg-[#070D18] border border-slate-800 hover:border-cyan-500/40 focus:border-cyan-400 rounded-xl ps-9 pe-20 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none transition-all shadow-inner"
+              className="w-full bg-[#060C18]/90 border border-slate-700/60 hover:border-cyan-500/50 focus:border-cyan-400 rounded-xl ps-9 pe-20 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none transition-all shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute end-14 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                className="absolute end-14 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
             <div className="absolute end-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-              <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-1.5 py-0.5 rounded">
+              <span className="text-[10px] font-mono bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 px-1.5 py-0.5 rounded font-bold">
                 ENTER
               </span>
             </div>
@@ -435,7 +445,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
             <select
               value={selectedBrand}
               onChange={e => setSelectedBrand(e.target.value)}
-              className="w-full bg-[#070D18] border border-slate-800 rounded-xl px-2.5 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-cyan-500/50"
+              className="w-full bg-[#060C18]/90 border border-slate-700/60 rounded-xl px-2.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-500/50 font-medium"
             >
               <option value="all">كل الماركات (All Brands)</option>
               {brands.filter(b => b !== 'all').map(b => (
@@ -446,7 +456,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Expressive Category Tabs (Aronium inspired with colorful themed buttons) */}
-        <div className="px-3 py-2 bg-[#090F1C] border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0">
+        <div className="px-3 py-2 bg-gradient-to-r from-[#080E1C] via-[#091124] to-[#070D18] border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0">
           {categories.map(cat => {
             const theme = getCategoryTheme(cat);
             const Icon = theme.icon;
@@ -459,7 +469,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
                   isSelected
                     ? `${theme.activeTabBg} ${theme.activeTabText} shadow-lg ring-1 ring-white/20 scale-[1.02]`
-                    : 'bg-[#0E172A] border border-slate-800/90 text-slate-300 hover:border-slate-700 hover:text-white'
+                    : 'bg-gradient-to-b from-[#0E172A]/90 to-[#0A1222]/90 border border-slate-700/60 text-slate-300 hover:border-slate-500 hover:text-white'
                 }`}
                 style={isSelected ? { boxShadow: `0 4px 14px ${theme.glowColor}` } : {}}
               >
@@ -473,8 +483,8 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
         {/* Product Catalog Grid with Vivid Colors & Touch Friendly Cards */}
         <div className="flex-1 p-3 overflow-y-auto">
           {filteredProducts.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-slate-500 text-xs">
-              <Laptop className="w-12 h-12 text-slate-700 mb-2 stroke-1" />
+            <div className="h-full flex flex-col items-center justify-center text-slate-400 text-xs">
+              <Laptop className="w-12 h-12 text-slate-600 mb-2 stroke-1" />
               <span>لا توجد منتجات مطابقة في هذا التصنيف</span>
             </div>
           ) : (
@@ -489,12 +499,12 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                   <div
                     key={p.id}
                     onClick={() => !isOutOfStock && addToCart(p)}
-                    className={`group relative p-3 rounded-2xl border text-start flex flex-col justify-between transition-all duration-150 cursor-pointer overflow-hidden ${
+                    className={`group relative p-3 rounded-2xl border text-start flex flex-col justify-between transition-all duration-150 cursor-pointer overflow-hidden shadow-md ${
                       isOutOfStock
                         ? 'opacity-40 bg-[#070D18] border-slate-900 cursor-not-allowed'
                         : inCart
-                        ? 'bg-[#0E182D] border-cyan-400 shadow-lg shadow-cyan-500/10 scale-[1.01]'
-                        : 'bg-[#0B1322] border-slate-800/80 hover:border-slate-700 hover:bg-[#0E182D]'
+                        ? 'bg-gradient-to-b from-[#10203D] to-[#0A1428] border-cyan-400 shadow-lg shadow-cyan-500/15 scale-[1.01]'
+                        : 'bg-gradient-to-b from-[#0F1C34]/85 to-[#091122]/90 border-slate-700/60 hover:border-cyan-500/50 hover:bg-[#12203A]'
                     }`}
                   >
                     {/* Top Category Accent Line */}
@@ -510,7 +520,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                         
                         {/* Expressive Stock Indicator */}
                         {isOutOfStock ? (
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">
                             نفد
                           </span>
                         ) : isLowStock ? (
@@ -518,7 +528,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                             قليل ({p.currentStock})
                           </span>
                         ) : (
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">
                             متوفر: {p.currentStock}
                           </span>
                         )}
@@ -531,12 +541,12 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
                       {/* Category & Serial Pill */}
                       <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                        <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium border ${theme.badgeBg} ${theme.badgeText} ${theme.badgeBorder}`}>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-md font-semibold border ${theme.badgeBg} ${theme.badgeText} ${theme.badgeBorder}`}>
                           {theme.nameAr}
                         </span>
 
                         {p.type === 'serial' && (
-                          <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 font-mono">
+                          <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-md bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-mono font-semibold">
                             <Barcode className="w-3 h-3 text-cyan-400" />
                             <span>سيريال</span>
                           </span>
@@ -554,11 +564,11 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                       </div>
 
                       {inCart ? (
-                        <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shadow-md shadow-cyan-500/20 ring-2 ring-cyan-400/40">
+                        <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shadow-md shadow-cyan-500/25 ring-2 ring-cyan-400/40">
                           {inCart.qty}
                         </div>
                       ) : (
-                        <div className="w-7 h-7 rounded-xl bg-slate-800/80 group-hover:bg-cyan-500 group-hover:text-slate-950 text-slate-400 flex items-center justify-center transition-all">
+                        <div className="w-7 h-7 rounded-xl bg-slate-800/90 group-hover:bg-cyan-500 group-hover:text-slate-950 text-slate-300 flex items-center justify-center transition-all shadow-sm">
                           <Plus className="w-4 h-4" />
                         </div>
                       )}
@@ -571,11 +581,11 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom Fast Action Bar with Tangible Hotkeys */}
-        <div className="p-2.5 bg-[#070D18] border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs text-slate-400 shrink-0">
+        <div className="p-2.5 bg-gradient-to-r from-[#070D18] via-[#091122] to-[#070D18] border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs text-slate-300 shrink-0">
           <div className="flex items-center gap-2">
             <button 
               onClick={clearCart} 
-              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-rose-500/40 text-slate-300 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 hover:border-rose-500/40 text-slate-200 transition-colors shadow-sm"
             >
               <kbd className="font-mono font-bold text-rose-400 text-[10px] bg-slate-800 px-1 rounded">F1</kbd>
               <span>بيع جديد</span>
@@ -583,7 +593,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
             <button 
               onClick={() => searchInputRef.current?.focus()} 
-              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 text-slate-300 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 hover:border-cyan-500/40 text-slate-200 transition-colors shadow-sm"
             >
               <kbd className="font-mono font-bold text-cyan-400 text-[10px] bg-slate-800 px-1 rounded">F2</kbd>
               <span>البحث</span>
@@ -591,7 +601,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
             <button 
               onClick={() => setShowCustomerModal(true)} 
-              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/40 text-slate-300 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 hover:border-amber-500/40 text-slate-200 transition-colors shadow-sm"
             >
               <kbd className="font-mono font-bold text-amber-400 text-[10px] bg-slate-800 px-1 rounded">F3</kbd>
               <span>عميل جديد</span>
@@ -600,7 +610,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
             <button 
               onClick={handleHoldSale} 
               disabled={cart.length === 0}
-              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 hover:border-yellow-500/40 text-slate-300 disabled:opacity-40 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 hover:border-yellow-500/40 text-slate-200 disabled:opacity-40 transition-colors shadow-sm"
             >
               <kbd className="font-mono font-bold text-yellow-400 text-[10px] bg-slate-800 px-1 rounded">F5</kbd>
               <span>تعليق الفاتورة</span>
@@ -625,11 +635,11 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
       </div>
 
       {/* Main Right: Cart, Customer Selector, Totals & Pay */}
-      <div className="w-full lg:w-96 bg-[#0B1322] flex flex-col justify-between shrink-0 overflow-hidden border-s border-slate-800/80">
+      <div className="w-full lg:w-96 bg-gradient-to-b from-[#0C152B]/95 via-[#0E1A34]/90 to-[#080E1C]/95 flex flex-col justify-between shrink-0 overflow-hidden border-s border-slate-800/80 backdrop-blur-xl">
         {/* Customer Select Bar with Credit Warning */}
-        <div className="p-3 border-b border-slate-800/80 bg-[#0E172A] flex items-center justify-between gap-2 shrink-0">
+        <div className="p-3 border-b border-slate-800/80 bg-gradient-to-r from-[#0E182E] to-[#0A1224] flex items-center justify-between gap-2 shrink-0">
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            <div className="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
               <User className="w-4 h-4" />
             </div>
             <select
@@ -638,7 +648,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                 const c = customers.find(item => item.id === e.target.value);
                 setSelectedCustomer(c || null);
               }}
-              className="w-full bg-[#070D18] border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white truncate focus:outline-none focus:border-cyan-500/40"
+              className="w-full bg-[#060C18] border border-slate-700/70 rounded-lg px-2.5 py-1.5 text-xs text-white truncate focus:outline-none focus:border-cyan-500/50 font-medium"
             >
               {customers.map(c => (
                 <option key={c.id} value={c.id}>
@@ -650,7 +660,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
           <button
             onClick={() => setShowCustomerModal(true)}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-cyan-500/20 text-cyan-400 border border-slate-700 hover:border-cyan-500/40 transition-colors shrink-0"
+            className="p-2 rounded-lg bg-slate-800 hover:bg-cyan-500/20 text-cyan-400 border border-slate-700 hover:border-cyan-500/40 transition-colors shrink-0 shadow-sm"
             title="إضافة عميل جديد (F3)"
           >
             <Plus className="w-4 h-4" />
@@ -659,7 +669,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
         {/* Customer Balance Reminder if outstanding debt exists */}
         {selectedCustomer && selectedCustomer.outstandingDebt > 0 && (
-          <div className="px-3 py-1.5 bg-amber-500/15 border-b border-amber-500/30 flex items-center justify-between text-xs text-amber-300 font-semibold shrink-0">
+          <div className="px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/15 border-b border-amber-500/30 flex items-center justify-between text-xs text-amber-300 font-semibold shrink-0">
             <span>رصيد ديون سابق على العميل:</span>
             <span className="font-mono font-bold text-amber-400">{formatCurrency(selectedCustomer.outstandingDebt)}</span>
           </div>
@@ -668,12 +678,12 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
         {/* Cart Items List */}
         <div className="flex-1 p-3 overflow-y-auto space-y-2.5">
           {cart.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-slate-500 text-xs space-y-2">
-              <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600">
+            <div className="h-full flex flex-col items-center justify-center text-slate-400 text-xs space-y-2">
+              <div className="w-12 h-12 rounded-2xl bg-slate-900/80 border border-slate-700/60 flex items-center justify-center text-slate-500 shadow-inner">
                 <Layers className="w-6 h-6" />
               </div>
-              <span className="font-bold text-slate-400">سلة المبيعات فارغة</span>
-              <span className="text-[11px] text-slate-600">امسح الباركود أو انقر على أي منتج لإضافته</span>
+              <span className="font-bold text-slate-300">سلة المبيعات فارغة</span>
+              <span className="text-[11px] text-slate-500">امسح الباركود أو انقر على أي منتج لإضافته</span>
             </div>
           ) : (
             cart.map(item => {
@@ -681,7 +691,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
               const theme = getCategoryTheme(item.sku.split('-')[0]);
 
               return (
-                <div key={item.productId} className="p-3 rounded-xl bg-[#0E172A] border border-slate-800 space-y-2.5 shadow-sm">
+                <div key={item.productId} className="p-3 rounded-xl bg-gradient-to-r from-[#0F1C34]/90 to-[#0A1428]/90 border border-slate-700/70 space-y-2.5 shadow-md">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-bold text-white leading-tight truncate">
@@ -690,7 +700,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                       <div className="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-2">
                         <span className="text-cyan-400 font-semibold">{formatCurrency(item.unitPrice)}</span>
                         {item.warrantyMonths > 0 && (
-                          <span className="text-[10px] text-teal-300 bg-teal-500/10 px-1.5 py-0.2 rounded border border-teal-500/20">
+                          <span className="text-[10px] text-teal-300 bg-teal-500/15 px-1.5 py-0.2 rounded border border-teal-500/30 font-semibold">
                             ضمان {item.warrantyMonths} شهر
                           </span>
                         )}
@@ -699,7 +709,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
                     <button
                       onClick={() => removeFromCart(item.productId)}
-                      className="text-slate-500 hover:text-rose-400 p-1 rounded hover:bg-rose-500/10 transition-colors"
+                      className="text-slate-400 hover:text-rose-400 p-1 rounded hover:bg-rose-500/10 transition-colors"
                       title="حذف من السلة"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -708,10 +718,10 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
                   {/* Quantity Controls & Item Total */}
                   <div className="flex items-center justify-between pt-1 border-t border-slate-800/80">
-                    <div className="flex items-center gap-1.5 bg-[#070D18] rounded-lg border border-slate-800 p-0.5">
+                    <div className="flex items-center gap-1.5 bg-[#060C18] rounded-lg border border-slate-700/70 p-0.5 shadow-inner">
                       <button
                         onClick={() => updateCartQty(item.productId, -1)}
-                        className="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white rounded hover:bg-slate-800 font-bold"
+                        className="w-6 h-6 flex items-center justify-center text-slate-300 hover:text-white rounded hover:bg-slate-800 font-bold"
                       >
                         -
                       </button>
@@ -720,7 +730,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                       </span>
                       <button
                         onClick={() => updateCartQty(item.productId, 1)}
-                        className="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white rounded hover:bg-slate-800 font-bold"
+                        className="w-6 h-6 flex items-center justify-center text-slate-300 hover:text-white rounded hover:bg-slate-800 font-bold"
                       >
                         +
                       </button>
@@ -733,7 +743,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
 
                   {/* Serial Number Picker if serial-controlled */}
                   {item.type === 'serial' && (
-                    <div className="pt-2 border-t border-slate-800/80 space-y-1.5 bg-[#070D18]/40 -mx-3 -mb-3 p-2.5 rounded-b-xl">
+                    <div className="pt-2 border-t border-slate-800/80 space-y-1.5 bg-[#060C18]/60 -mx-3 -mb-3 p-2.5 rounded-b-xl">
                       <div className="text-[11px] font-semibold text-cyan-400 flex items-center justify-between">
                         <span className="flex items-center gap-1">
                           <Barcode className="w-3.5 h-3.5" />
@@ -776,14 +786,14 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Invoice Summary & Checkout Section */}
-        <div className="p-3.5 bg-[#0B1322] border-t border-slate-800/90 space-y-2.5 shrink-0">
+        <div className="p-3.5 bg-gradient-to-t from-[#080E1C] to-[#0B152A] border-t border-slate-800/90 space-y-2.5 shrink-0 shadow-lg">
           <div className="space-y-1.5 text-xs">
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-300">
               <span>المجموع الفرعي:</span>
-              <span className="font-mono text-slate-200">{formatCurrency(subtotal)}</span>
+              <span className="font-mono text-white font-semibold">{formatCurrency(subtotal)}</span>
             </div>
 
-            <div className="flex items-center justify-between text-slate-400">
+            <div className="flex items-center justify-between text-slate-300">
               <span className="flex items-center gap-1">
                 <Tag className="w-3 h-3 text-cyan-400" />
                 <span>خصم على الفاتورة:</span>
@@ -793,7 +803,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
                 value={invoiceDiscount || ''}
                 onChange={e => setInvoiceDiscount(Number(e.target.value) || 0)}
                 placeholder="0"
-                className="w-24 text-end bg-[#070D18] border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white font-mono focus:outline-none focus:border-cyan-500"
+                className="w-24 text-end bg-[#060C18] border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white font-mono focus:outline-none focus:border-cyan-500 font-bold"
               />
             </div>
 
@@ -809,7 +819,7 @@ export const POSView: React.FC<POSViewProps> = ({ onNavigate }) => {
           <button
             onClick={openPaymentModal}
             disabled={cart.length === 0}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 disabled:opacity-40 text-slate-950 text-sm font-black shadow-xl shadow-teal-500/25 transition-all flex items-center justify-center gap-2 group ring-1 ring-white/20 active:scale-[0.99]"
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 disabled:opacity-40 text-slate-950 text-sm font-black shadow-xl shadow-teal-500/25 transition-all flex items-center justify-center gap-2 group ring-1 ring-white/20 active:scale-[0.99]"
           >
             <CreditCard className="w-5 h-5 text-slate-950 group-hover:scale-110 transition-transform" />
             <span>إتمام الدفع واختيار القنوات (F6)</span>

@@ -439,4 +439,6 @@ export interface StoreSettings {
   receiptHeader?: string;
   receiptFooter?: string;
   barcodePrefix?: string;
+  logoUrl?: string; // Base64 data URL or custom image URL for store logo
+  logoBadgeStyle?: 'glow' | 'badge' | 'minimal';
 }

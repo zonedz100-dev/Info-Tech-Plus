@@ -63,23 +63,33 @@ export const CustomersView: React.FC = () => {
   };
 
   return (
-    <div className="p-5 max-w-7xl mx-auto space-y-4">
-      {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-4 rounded-xl">
-        <div>
-          <h1 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-            <Users className="w-5 h-5 text-teal-400" />
-            <span>إدارة العملاء وحسابات الديون (Customer CRM & Receivables)</span>
-          </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
-            متابعة سجل مشتريات الزبائن، مستحقات البيع بالآجل، وتحصيل الدفعات
-          </p>
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-5">
+      {/* Top Banner with Luxury Gradient & Glowing Brand Accents */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527]/95 via-[#111F38]/90 to-[#0A1224]/95 border border-cyan-500/25 p-5 rounded-2xl shadow-xl shadow-black/30 erp-card-glow relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/25 to-blue-600/30 text-cyan-300 border border-cyan-500/40 flex items-center justify-center shadow-md shadow-cyan-500/20">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                <span>إدارة العملاء وحسابات الديون</span>
+                <span className="text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">
+                  Customer CRM & Receivables
+                </span>
+              </h1>
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                متابعة سجل مشتريات الزبائن، مستحقات البيع بالآجل، وتحصيل الدفعات
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 relative z-10">
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold shadow-md shadow-teal-500/20 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 text-xs font-black shadow-lg shadow-teal-500/25 transition-all cursor-pointer ring-1 ring-white/20"
           >
             <Plus className="w-4 h-4" />
             <span>إضافة عميل جديد</span>
@@ -87,86 +97,86 @@ export const CustomersView: React.FC = () => {
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 flex items-center justify-between">
-        <div className="relative w-80">
-          <Search className="w-4 h-4 text-slate-400 absolute start-3 top-1/2 -translate-y-1/2" />
+      {/* Search Bar with Luxury Gradient */}
+      <div className="bg-gradient-to-r from-[#0C1527]/90 via-[#0E1B32]/80 to-[#0A1324]/90 p-4 rounded-2xl border border-slate-800/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md shadow-black/20">
+        <div className="relative w-full sm:w-80">
+          <Search className="w-4 h-4 text-cyan-400 absolute start-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="ابحث باسم العميل أو رقم الهاتف..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg ps-9 pe-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-teal-500"
+            className="w-full bg-[#070E1C]/90 border border-slate-700/80 rounded-xl ps-10 pe-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 shadow-inner font-medium"
           />
         </div>
-        <div className="text-xs text-slate-400 font-mono">
-          إجمالي المسجلين: <strong className="text-teal-400">{filtered.length}</strong> عميل
+        <div className="text-xs text-slate-300 font-mono font-medium">
+          إجمالي المسجلين: <strong className="text-cyan-400 text-sm font-black">{filtered.length}</strong> عميل
         </div>
       </div>
 
       {/* Customers Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-gradient-to-b from-[#0C1527] to-[#0A1224] border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl shadow-black/20 erp-card-glow">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-start">
             <thead>
-              <tr className="bg-slate-950/80 border-b border-slate-800 text-slate-400">
-                <th className="py-3 px-3 text-start">اسم العميل</th>
-                <th className="py-3 px-3 text-start">بيانات الاتصال</th>
-                <th className="py-3 px-3 text-start">العنوان</th>
-                <th className="py-3 px-3 text-end">إجمالي المشتريات</th>
-                <th className="py-3 px-3 text-end">إجمالي المدفوع</th>
-                <th className="py-3 px-3 text-end">الديون المستحقة (الآجل)</th>
-                <th className="py-3 px-3 text-center">إجراءات</th>
+              <tr className="bg-[#070D1A]/95 border-b border-slate-800/90 text-slate-300 font-bold">
+                <th className="py-3.5 px-4 text-start">اسم العميل</th>
+                <th className="py-3.5 px-4 text-start">بيانات الاتصال</th>
+                <th className="py-3.5 px-4 text-start">العنوان</th>
+                <th className="py-3.5 px-4 text-end">إجمالي المشتريات</th>
+                <th className="py-3.5 px-4 text-end">إجمالي المدفوع</th>
+                <th className="py-3.5 px-4 text-end">الديون المستحقة (الآجل)</th>
+                <th className="py-3.5 px-4 text-center">إجراءات</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/60 font-medium">
               {filtered.map(c => (
-                <tr key={c.id} className="hover:bg-slate-800/40 transition-colors">
-                  <td className="py-3 px-3 font-semibold text-white">
+                <tr key={c.id} className="hover:bg-cyan-500/[0.04] transition-colors">
+                  <td className="py-3.5 px-4 text-white font-bold text-sm">
                     {c.name}
                   </td>
-                  <td className="py-3 px-3 text-slate-300 font-mono">
-                    <div>{c.phone}</div>
-                    {c.email && <div className="text-[10px] text-slate-500">{c.email}</div>}
+                  <td className="py-3.5 px-4 text-slate-300">
+                    <div className="font-mono text-cyan-300 font-bold">{c.phone}</div>
+                    {c.email && <div className="text-[10px] text-slate-400 mt-0.5">{c.email}</div>}
                   </td>
-                  <td className="py-3 px-3 text-slate-400 text-[11px]">
+                  <td className="py-3.5 px-4 text-slate-300 text-[11px]">
                     {c.address || '-'}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono text-slate-300">
+                  <td className="py-3.5 px-4 text-end font-mono font-bold text-slate-200">
                     {formatCurrency(c.totalPurchases)}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono text-emerald-400">
+                  <td className="py-3.5 px-4 text-end font-mono font-bold text-emerald-400">
                     {formatCurrency(c.totalPaid)}
                   </td>
-                  <td className="py-3 px-3 text-end font-mono font-bold">
+                  <td className="py-3.5 px-4 text-end font-mono font-black">
                     {c.outstandingDebt > 0 ? (
-                      <span className="text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">
+                      <span className="text-purple-300 bg-purple-500/20 border border-purple-500/40 px-2.5 py-1 rounded-full font-mono font-black text-xs shadow-sm shadow-purple-500/20">
                         {formatCurrency(c.outstandingDebt)}
                       </span>
                     ) : (
-                      <span className="text-slate-500 font-normal">0 دج</span>
+                      <span className="text-emerald-400 font-bold">خالص ✓</span>
                     )}
                   </td>
-                  <td className="py-3 px-3 text-center">
-                    <div className="flex items-center justify-center gap-1.5">
+                  <td className="py-3.5 px-4 text-center">
+                    <div className="flex items-center justify-center gap-2">
                       {c.outstandingDebt > 0 && (
                         <button
                           onClick={() => {
                             setSelectedCustomerForPayment(c);
                             setPaymentAmount(c.outstandingDebt);
                           }}
-                          className="px-2.5 py-1 rounded bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 font-bold text-[10px] border border-teal-500/30 flex items-center gap-1"
+                          className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-teal-500/20 to-emerald-500/20 hover:from-teal-500/30 hover:to-emerald-500/30 text-teal-300 font-bold text-xs border border-teal-500/40 flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
                         >
-                          <CreditCard className="w-3 h-3" />
+                          <CreditCard className="w-3.5 h-3.5" />
                           <span>تحصيل دفعة</span>
                         </button>
                       )}
                       <button
                         onClick={() => setSelectedCustomerHistory(c)}
-                        className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white"
+                        className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-300 hover:text-white transition-all shadow-sm border border-slate-700/80 cursor-pointer"
                         title="سجل المشتريات"
                       >
-                        <History className="w-3.5 h-3.5" />
+                        <History className="w-3.5 h-3.5 text-cyan-400" />
                       </button>
                     </div>
                   </td>

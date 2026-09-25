@@ -174,25 +174,33 @@ export const ProductsView: React.FC = () => {
   };
 
   return (
-    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
-      {/* Top Banner with High-Tech Styling */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527] via-[#0E1A34] to-[#0A1224] border border-cyan-500/30 p-4 lg:p-5 rounded-2xl shadow-xl shadow-black/30">
-        <div>
-          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
-              <Package className="w-4 h-4" />
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-5">
+      {/* Top Banner with Luxury Gradient & Glowing Brand Accents */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C1527]/95 via-[#111F38]/90 to-[#0A1224]/95 border border-cyan-500/25 p-5 rounded-2xl shadow-xl shadow-black/30 erp-card-glow relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/25 to-indigo-600/30 text-blue-300 border border-blue-500/40 flex items-center justify-center shadow-md shadow-blue-500/20">
+              <Package className="w-5 h-5" />
             </div>
-            <span>دليل المنتجات والمواد التقنية (Products Catalog)</span>
-          </h1>
-          <p className="text-xs text-slate-300 mt-1">
-            إدارة الأسعار، تكلفة الشراء، الباركود، الأرقام التسلسلية، والمواصفات الفنية
-          </p>
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                <span>دليل المنتجات والمواد التقنية</span>
+                <span className="text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">
+                  Products Catalog
+                </span>
+              </h1>
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                إدارة الأسعار، تكلفة الشراء، الباركود، الأرقام التسلسلية، والمواصفات الفنية
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2.5 relative z-10">
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 text-xs font-bold border border-slate-700/80 transition-all hover:border-slate-600 shadow-sm cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-cyan-400" />
             <span>تصدير CSV</span>
@@ -200,7 +208,7 @@ export const ProductsView: React.FC = () => {
 
           <button
             onClick={handleOpenAdd}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 text-xs font-black shadow-lg shadow-teal-500/20 transition-all ring-1 ring-white/20"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 text-xs font-black shadow-lg shadow-teal-500/25 transition-all cursor-pointer ring-1 ring-white/20"
           >
             <Plus className="w-4 h-4" />
             <span>إضافة منتج جديد</span>
@@ -209,15 +217,15 @@ export const ProductsView: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar with Colorful Category Badges */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#0B1322] p-3.5 rounded-2xl border border-slate-800/90 shadow-md">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-gradient-to-r from-[#0C1527]/90 via-[#0E1B32]/80 to-[#0A1324]/90 p-4 rounded-2xl border border-slate-800/90 shadow-md">
         <div className="relative w-full sm:w-80">
-          <Search className="w-4 h-4 text-cyan-400 absolute start-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-cyan-400 absolute start-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="ابحث بالاسم، SKU، الباركود، أو الماركة..."
-            className="w-full bg-[#070D18] border border-slate-800 rounded-xl ps-9 pe-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+            className="w-full bg-[#070E1C]/90 border border-slate-700/80 rounded-xl ps-10 pe-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 shadow-inner font-medium"
           />
         </div>
 
@@ -230,10 +238,10 @@ export const ProductsView: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 text-xs rounded-xl transition-all whitespace-nowrap font-bold ${
+                className={`px-3.5 py-2 text-xs rounded-xl transition-all whitespace-nowrap font-bold cursor-pointer ${
                   isSelected
-                    ? `${theme.activeTabBg} ${theme.activeTabText} shadow-md`
-                    : 'bg-[#070D18] text-slate-400 hover:text-white border border-slate-800'
+                    ? `${theme.activeTabBg} ${theme.activeTabText} shadow-lg ring-1 ring-white/20`
+                    : 'bg-[#070E1C]/90 text-slate-300 hover:text-white hover:bg-slate-800/70 border border-slate-800'
                 }`}
               >
                 {theme.nameAr}
@@ -244,22 +252,22 @@ export const ProductsView: React.FC = () => {
       </div>
 
       {/* Products Table with Expressive Rows */}
-      <div className="bg-[#0B1322] border border-slate-800/90 rounded-2xl overflow-hidden shadow-lg">
+      <div className="bg-gradient-to-b from-[#0C1527] to-[#0A1224] border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl shadow-black/20 erp-card-glow">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-start">
             <thead>
-              <tr className="bg-[#070D18] border-b border-slate-800/80 text-slate-400 font-semibold">
-                <th className="py-3 px-3.5 text-start">المنتج والتعيين</th>
-                <th className="py-3 px-3.5 text-start">الفئة / الماركة</th>
-                <th className="py-3 px-3.5 text-center">النوع</th>
-                <th className="py-3 px-3.5 text-end">سعر التكلفة</th>
-                <th className="py-3 px-3.5 text-end">سعر البيع</th>
-                <th className="py-3 px-3.5 text-center">المخزون الحالي</th>
-                <th className="py-3 px-3.5 text-center">الضمان</th>
-                <th className="py-3 px-3.5 text-center">إجراءات</th>
+              <tr className="bg-[#070D1A]/95 border-b border-slate-800/90 text-slate-300 font-bold">
+                <th className="py-3.5 px-4 text-start">المنتج والتعيين</th>
+                <th className="py-3.5 px-4 text-start">الفئة / الماركة</th>
+                <th className="py-3.5 px-4 text-center">النوع</th>
+                <th className="py-3.5 px-4 text-end">سعر التكلفة</th>
+                <th className="py-3.5 px-4 text-end">سعر البيع</th>
+                <th className="py-3.5 px-4 text-center">المخزون الحالي</th>
+                <th className="py-3.5 px-4 text-center">الضمان</th>
+                <th className="py-3.5 px-4 text-center">إجراءات</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/60 font-medium">
               {filtered.map(p => {
                 const theme = getCategoryTheme(p.category);
                 const isOutOfStock = p.currentStock <= 0;

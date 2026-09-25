@@ -164,15 +164,17 @@ export const RepairsView: React.FC = () => {
   };
 
   return (
-    <div className="p-5 max-w-7xl mx-auto space-y-4">
-      {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-4 rounded-xl">
+    <div className="p-4 lg:p-6 max-w-7xl mx-auto space-y-4">
+      {/* Top Banner with Luxury Gradient & Ambient Light */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0C152B]/90 via-[#0E1D3B]/80 to-[#091224]/90 border border-teal-500/30 p-4 lg:p-5 rounded-2xl shadow-xl shadow-black/40 backdrop-blur-xl erp-card-glow">
         <div>
-          <h1 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-            <Wrench className="w-5 h-5 text-teal-400" />
+          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center">
+              <Wrench className="w-4 h-4" />
+            </div>
             <span>ورشة الصيانة والدعم الفني (RMA & Repairs)</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-300 mt-1">
             استلام أجهزة الزبائن، فحص الأعطال، استهلاك قطع الغيار من المخزن، ومتابعة مراحل التصليح
           </p>
         </div>
@@ -180,7 +182,7 @@ export const RepairsView: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowNewTicketModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold shadow-md shadow-teal-500/20 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 hover:from-teal-300 hover:to-cyan-300 text-slate-950 text-xs font-black shadow-lg shadow-teal-500/25 transition-all ring-1 ring-white/25 active:scale-[0.98]"
           >
             <Plus className="w-4 h-4" />
             <span>فتح تذكرة صيانة جديدة</span>
@@ -188,24 +190,26 @@ export const RepairsView: React.FC = () => {
         </div>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+      {/* Filter and Search Bar with Subtle Gradient */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-gradient-to-r from-[#0B152A]/90 to-[#080E1C]/90 p-3.5 rounded-2xl border border-slate-700/60 shadow-md backdrop-blur-xl">
         <div className="relative w-full sm:w-80">
-          <Search className="w-4 h-4 text-slate-400 absolute start-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-cyan-400 absolute start-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="ابحث برقم التذكرة، العميل، الهاتف، أو الموديل..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg ps-9 pe-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-teal-500"
+            className="w-full bg-[#060C18]/90 border border-slate-700/60 rounded-xl ps-9 pe-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 font-medium"
           />
         </div>
 
-        <div className="flex items-center gap-1 overflow-x-auto w-full sm:w-auto py-1">
+        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto py-1 no-scrollbar">
           <button
             onClick={() => setStatusFilter('all')}
-            className={`px-3 py-1 text-xs rounded transition-colors whitespace-nowrap ${
-              statusFilter === 'all' ? 'bg-teal-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 text-xs rounded-xl font-bold transition-all whitespace-nowrap ${
+              statusFilter === 'all' 
+                ? 'bg-gradient-to-r from-teal-400 to-emerald-400 text-slate-950 shadow-md shadow-teal-500/20' 
+                : 'bg-[#060C18] text-slate-300 hover:text-white border border-slate-700/60'
             }`}
           >
             كافة الحالات
@@ -214,8 +218,10 @@ export const RepairsView: React.FC = () => {
             <button
               key={s.id}
               onClick={() => setStatusFilter(s.id)}
-              className={`px-2.5 py-1 text-xs rounded transition-colors whitespace-nowrap ${
-                statusFilter === s.id ? 'bg-teal-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400 hover:text-white'
+              className={`px-3 py-1.5 text-xs rounded-xl font-bold transition-all whitespace-nowrap ${
+                statusFilter === s.id 
+                  ? 'bg-gradient-to-r from-teal-400 to-emerald-400 text-slate-950 shadow-md shadow-teal-500/20' 
+                  : 'bg-[#060C18] text-slate-300 hover:text-white border border-slate-700/60'
               }`}
             >
               {s.label}
@@ -227,7 +233,7 @@ export const RepairsView: React.FC = () => {
       {/* Repairs Table / Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
         {filtered.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-500 text-xs">
+          <div className="col-span-full py-16 text-center text-slate-400 text-xs">
             لا توجد تذاكر صيانة مطابقة
           </div>
         ) : (
@@ -237,14 +243,14 @@ export const RepairsView: React.FC = () => {
             return (
               <div
                 key={r.id}
-                className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between space-y-3"
+                className="bg-gradient-to-br from-[#0F1C34]/85 via-[#0B1528]/85 to-[#080F1E]/90 border border-slate-700/60 hover:border-teal-500/50 rounded-2xl p-4 flex flex-col justify-between space-y-3.5 shadow-lg backdrop-blur-md transition-all erp-card-glow"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-xs font-bold text-teal-400">
+                    <span className="font-mono text-xs font-black text-cyan-400">
                       {r.ticketNumber}
                     </span>
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border font-semibold ${statusObj.color}`}>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border font-bold ${statusObj.color}`}>
                       {statusObj.label}
                     </span>
                   </div>
@@ -253,44 +259,44 @@ export const RepairsView: React.FC = () => {
                     {r.brand} {r.model}
                   </h4>
 
-                  <div className="text-[11px] text-slate-400 space-y-1 mt-2">
+                  <div className="text-[11px] text-slate-300 space-y-1.5 mt-2">
                     <div>
-                      <span>العميل: </span>
-                      <strong className="text-slate-200">{r.customerName}</strong>
-                      <span className="font-mono text-[10px] text-slate-500 ms-1">({r.customerPhone})</span>
+                      <span className="text-slate-400">العميل: </span>
+                      <strong className="text-white">{r.customerName}</strong>
+                      <span className="font-mono text-[10px] text-slate-400 ms-1">({r.customerPhone})</span>
                     </div>
 
                     {r.serialNumber && (
-                      <div className="font-mono text-[10px] text-teal-400">
+                      <div className="font-mono text-[10px] text-teal-400 font-semibold">
                         SN: {r.serialNumber}
                       </div>
                     )}
 
-                    <div className="p-2 bg-slate-950 rounded text-slate-300 border border-slate-800/80 leading-relaxed text-[11px]">
+                    <div className="p-2.5 bg-[#060C18]/90 rounded-xl text-slate-200 border border-slate-700/60 leading-relaxed text-[11px] shadow-inner">
                       {r.problemDescription}
                     </div>
 
                     {/* Parts Used */}
                     {r.partsUsed.length > 0 && (
-                      <div className="pt-1 text-[10px] text-teal-400">
+                      <div className="pt-1 text-[10px] text-teal-300 font-semibold">
                         قطع مستهلكة: {r.partsUsed.map(p => `${p.productName} (x${p.qty})`).join(', ')}
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-slate-800 space-y-2">
+                <div className="pt-2.5 border-t border-slate-800 space-y-2">
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-400">التكلفة الإجمالية:</span>
-                    <strong className="font-mono text-teal-300">{formatCurrency(r.finalCost || r.estimatedCost)}</strong>
+                    <strong className="font-mono text-emerald-400 font-black text-sm">{formatCurrency(r.finalCost || r.estimatedCost)}</strong>
                   </div>
 
                   {/* Stage Switcher Controls */}
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <select
                       value={r.status}
                       onChange={e => updateRepairStatus(r.id, e.target.value as RepairStatus)}
-                      className="flex-1 bg-slate-950 border border-slate-800 rounded px-2 py-1 text-white text-[11px] focus:outline-none"
+                      className="flex-1 bg-[#060C18] border border-slate-700/70 rounded-xl px-2.5 py-1.5 text-white text-[11px] focus:outline-none focus:border-teal-400 font-semibold"
                     >
                       {statuses.map(s => (
                         <option key={s.id} value={s.id}>{s.label}</option>
@@ -299,7 +305,7 @@ export const RepairsView: React.FC = () => {
 
                     <button
                       onClick={() => setSelectedTicketForParts(r)}
-                      className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-teal-300 text-[11px] whitespace-nowrap"
+                      className="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-teal-300 text-[11px] font-bold whitespace-nowrap transition-colors"
                       title="استهلاك قطعة غيار من المخزن"
                     >
                       + قطعة غيار
