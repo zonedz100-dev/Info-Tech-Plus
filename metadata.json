@@ -1,0 +1,6 @@
+{
+  "name": "TechPulse ERP & POS - Computer & Electronics Store Platform",
+  "description": "منصة احترافية متكاملة لإدارة متاجر الحواسيب والإلكترونيات، نقاط البيع، الأرقام التسلسلية، الصيانة، والضمان",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
